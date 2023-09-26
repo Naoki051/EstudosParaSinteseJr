@@ -9,9 +9,9 @@ routes.post("/envia-email", (req, res, next) => {
   const { nome, email, assunto, mensagem } = req.body;
   const msg = {
     to: process.env.TO_MAIL,
-    from: email,
+    from: process.env.TO_MAIL,
     subject: assunto,
-    text: `${nome}: ${mensagem}`,
+    text: `${nome}: ${mensagem}\n${email}`,
   };
   sgMail
     .send(msg)
